@@ -17,14 +17,14 @@ const InfoCards = () => {
         {
             id: 2,
             name: 'Our Locations',
-            description: 'Open 9.00 am to 5.00pm everyday',
+            description: '9.00 stret,Bhihar',
             icon: marker,
             bgClass: 'bg-accent'
         },
         {
             id: 3,
             name: 'Contact Us',
-            description: 'Open 9.00 am to 5.00pm everyday',
+            description: '+880 0123456789',
             icon: phone,
             bgClass: 'bg-gradient-to-r from-primary to-secondary'
         },

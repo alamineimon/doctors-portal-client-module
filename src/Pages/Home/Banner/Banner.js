@@ -26,7 +26,7 @@ const Banner = () => {
                 assumenda excepturi exercitationem quasi. In deleniti eaque aut
                 repudiandae et a id nisi.
               </p>
-              <PrimaryButton>Getting Started</PrimaryButton>
+              <PrimaryButton>Get Start</PrimaryButton>
             </div>
           </div>
         </div>
