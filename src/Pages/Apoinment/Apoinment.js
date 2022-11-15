@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ApoinmentBanner from './ApoinmentBanner';
-import AvailableApoinments from './AvailableApoinments';
+import AvailableApoinments from './AvailableApoinment';
 
 const Apoinment = (props) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -14,7 +14,7 @@ const Apoinment = (props) => {
         <AvailableApoinments
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
-        ></AvailableApoinments>
+            ></AvailableApoinments>
       </div>
     );
 }
