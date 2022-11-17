@@ -1,9 +1,13 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../context/AuthProvider";
 
-const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
+const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
   const { name, slots } = treatment;
   const date = format(selectedDate, "PP");
+
+  const { user } = useContext(AuthContext);
 
   const handleBooking = (event) => {
     event.preventDefault();
@@ -12,6 +16,7 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
     const email = form.email.value;
     const phone = form.phone.value;
     const slot = form.slot.value;
+
     const booking = {
       appoinment: date,
       treatment: name,
@@ -20,9 +25,27 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
       email,
       phone,
     };
-    console.log(booking);
-    setTreatment(null)
-  };
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          setTreatment(null);
+          toast.success("Booking Confirmed");
+          refetch()
+        }
+        else {
+          // toast.error("You already Booked");
+          toast.error(`You aleady have a booking `);
+        }
+      })
+  }
 
   return (
     <>
@@ -61,12 +84,16 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
               name="name"
               type="text"
               required
+              readOnly
+              defaultValue={user?.displayName}
               placeholder="Your Name"
               className="input input-bordered w-full"
             />
             <input
               name="email"
               type="email"
+              defaultValue={user?.email}
+              disabled
               required
               placeholder="Your Email Address"
               className="input input-bordered w-full"
