@@ -16,7 +16,6 @@ const SignUp = (props) => {
   const navigate = useNavigate()
    
   const handleSignUp = (data) => {
-      console.log(data);
     // setSignupError('');
     createUser(data.email, data.password)
       .then((result) => {
@@ -28,7 +27,7 @@ const SignUp = (props) => {
         };
         upDateUser(userInfo)
           .then(() => {
-            navigate('/')
+            saveUser(data.name, data.email);
           })
           .catch((err) => console.log(err));
       })
@@ -37,6 +36,21 @@ const SignUp = (props) => {
         setSignupError(err.message);
       });
   };
+
+  const saveUser = (name, email) => {
+    const user = { name, email }
+    fetch(`http://localhost:5000/users`, {
+      method: 'POST',
+      headers: {
+        'content-type':'application/json'
+      },
+      body: JSON.stringify(user)
+    }).then(res => res.json())
+      .then(data => {
+        console.log('save user',data)
+        navigate("/");
+      })
+  }
 
   return (
     <div className="h-[500px] flex flex-col justify-center items-center">
