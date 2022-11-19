@@ -17,7 +17,7 @@ const ManageDoctors = (props) => {
       try {
         const res = await fetch(`http://localhost:5000/doctors`, {
           headers: {
-            autorization: `bearer ${localStorage.getItem("accessToken")}`,
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
           },
         });
         const data = await res.json();
@@ -31,7 +31,7 @@ const ManageDoctors = (props) => {
     fetch(`http://localhost:5000/doctors/${doctor._id}`, {
       method: "DELETE",
       headers: {
-        autorization: `bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())

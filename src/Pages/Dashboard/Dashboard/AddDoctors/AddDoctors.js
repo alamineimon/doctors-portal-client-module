@@ -50,7 +50,7 @@ const AddDoctors = (props) => {
                       method: "POST",
                       headers: {
                         "content-type": "application/json",
-                   authorization: `bearer ${localStorage.getItem('accessToken')}` 
+                        authorization: `bearer ${localStorage.getItem('accessToken')}` 
                 },
                       // headers: {
                       //   "content-type": "application/json",
@@ -63,7 +63,7 @@ const AddDoctors = (props) => {
                       .then((res) => res.json())
                       .then((result) => {
                         console.log(result);
-                        toast.success(`$(data.name) is added successfully`);
+                        toast.success(`$(result?.name) is added successfully`);
                         navigate("/dashboard/managedoctors");
                       });
                 }
