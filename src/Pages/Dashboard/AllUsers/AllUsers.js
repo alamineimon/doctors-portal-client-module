@@ -13,7 +13,7 @@ const AllUsers = (props) => {
   });
 
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
           method: "PUT",
           headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -29,6 +29,8 @@ const AllUsers = (props) => {
 
         
     }
+
+
   return (
     <div>
       <h className="text-3xl">All Users</h>
@@ -60,7 +62,9 @@ const AllUsers = (props) => {
                   )}
                 </td>
                 <td>
-                  <button className="btn btn-sm btn-error text-white text-xs">
+                  <button
+                    className="btn btn-sm btn-error text-white text-xs"
+                  >
                     Delete
                   </button>
                 </td>

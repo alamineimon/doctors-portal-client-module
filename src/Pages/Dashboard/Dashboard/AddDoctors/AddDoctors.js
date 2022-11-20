@@ -38,7 +38,6 @@ const AddDoctors = (props) => {
             .then(res => res.json())
             .then(imagData => {
                 if (imagData.success) {
-                    console.log(imagData.data.display_url);
                     const doctor = {
                       name: data.name,
                       email: data.email,
@@ -52,18 +51,12 @@ const AddDoctors = (props) => {
                         "content-type": "application/json",
                         authorization: `bearer ${localStorage.getItem('accessToken')}` 
                 },
-                      // headers: {
-                      //   "content-type": "application/json",
-                      //   authorization: `bearer ${localStorage.getItem(
-                      //     "accessToken"
-                      //   )}`,
-                      // },
                       body: JSON.stringify(doctor),
                     })
                       .then((res) => res.json())
                       .then((result) => {
                         console.log(result);
-                        toast.success(`$(result?.name) is added successfully`);
+                        toast.success(`Doctor added successfully`);
                         navigate("/dashboard/managedoctors");
                       });
                 }
